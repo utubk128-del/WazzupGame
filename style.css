@@ -14,6 +14,7 @@
     --calc-bg: #1a1d24;
     --sun-display: block;
     --moon-display: none;
+    --shadow: rgba(0, 0, 0, 0.3);
 }
 
 /* Переменные для СВЕТЛОЙ темы */
@@ -30,6 +31,7 @@
     --calc-bg: #f0f2f5;
     --sun-display: none;
     --moon-display: block;
+    --shadow: rgba(0, 0, 0, 0.05);
 }
 
 * {
@@ -37,7 +39,8 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Plus Jakarta Sans', sans-serif;
-    transition: background-color 0.2s ease, border-color 0.2s ease;
+    /* Увеличили до 0.3s для красивого и плавного переключения темы */
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 body {
@@ -107,14 +110,21 @@ nav {
     cursor: pointer;
     font-weight: 600;
     font-size: 13px;
-    transition: all 0.15s ease;
+    transition: all 0.2s ease;
 }
 
-.nav-btn:hover { color: var(--text); }
+.nav-btn:hover {
+    color: var(--text);
+}
+
+.nav-btn:active {
+    transform: scale(0.95); /* Эффект продавливания при клике */
+}
+
 .nav-btn.active {
     background: var(--card-bg);
     color: var(--text);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 4px var(--shadow);
 }
 
 /* Кнопка темы */
@@ -129,8 +139,15 @@ nav {
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all 0.2s ease;
 }
-.theme-toggle-btn:hover { background: var(--border); }
+.theme-toggle-btn:hover {
+    background: var(--border);
+    transform: translateY(-1px);
+}
+.theme-toggle-btn:active {
+    transform: scale(0.9);
+}
 .theme-toggle-btn svg { width: 18px; height: 18px; }
 .sun-icon { display: var(--sun-display); }
 .moon-icon { display: var(--moon-display); }
@@ -147,6 +164,7 @@ nav {
     border: 1px solid var(--border);
     border-radius: 14px;
     padding: 24px;
+    box-shadow: 0 4px 12px var(--shadow);
 }
 .calc-card h3 { font-size: 18px; margin-bottom: 16px; font-weight: 700; }
 .calc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-bottom: 20px; }
@@ -160,6 +178,12 @@ nav {
     border-radius: 8px;
     font-size: 14px;
     outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+/* Фокус на инпутах калькулятора */
+.input-group input:focus, .input-group select:focus {
+    border-color: #2f80ed;
+    box-shadow: 0 0 0 3px rgba(47, 128, 237, 0.15);
 }
 .calc-result {
     display: flex;
@@ -175,6 +199,7 @@ nav {
 .result-item { font-size: 15px; display: flex; align-items: center; gap: 8px; }
 .result-item strong { font-size: 20px; color: var(--text); }
 .text-muted-calc { color: var(--text-muted); font-size: 13.5px; }
+
 .calc-btn {
     background: #2f80ed;
     color: #fff;
@@ -183,13 +208,37 @@ nav {
     text-decoration: none;
     font-size: 14px;
     font-weight: 600;
+    display: inline-block;
+    text-align: center;
+    transition: all 0.2s ease;
 }
-.calc-btn:hover { opacity: 0.9; }
+.calc-btn:hover {
+    background: #1b6fd1;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(47, 128, 237, 0.2);
+}
+.calc-btn:active {
+    transform: scale(0.97);
+}
 
 /* Сетка карточек */
 .articles-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; padding-bottom: 60px; }
-.card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; position: relative; }
-.card:hover { border-color: var(--text-muted); }
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+/* Карточки теперь красиво приподнимаются при наведении */
+.card:hover {
+    border-color: var(--text-muted);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px var(--shadow);
+}
 .card-img { width: 100%; height: 190px; object-fit: cover; border-bottom: 1px solid var(--border); }
 .card-content { padding: 20px; display: flex; flex-direction: column; flex-grow: 1; }
 
@@ -210,22 +259,41 @@ nav {
     align-items: center;
     justify-content: center;
     font-size: 14px;
-    transition: transform 0.1s ease;
+    transition: transform 0.2s ease, background-color 0.2s ease;
     z-index: 5;
 }
-.fav-btn:hover { transform: scale(1.1); }
+.fav-btn:hover { transform: scale(1.15); background: rgba(0, 0, 0, 0.8); }
+.fav-btn:active { transform: scale(0.9); }
 .fav-btn.active { color: #f2c94c; background: rgba(0, 0, 0, 0.8); }
 
 .badge { align-self: flex-start; font-size: 11px; font-weight: 700; padding: 4px 8px; border-radius: 4px; margin-bottom: 12px; letter-spacing: 0.5px; text-transform: uppercase; background: var(--border); color: var(--text); }
 .card h3 { font-size: 18px; font-weight: 700; line-height: 1.35; margin-bottom: 8px; color: var(--text); }
 .card p { color: var(--text-muted); font-size: 13.5px; line-height: 1.5; margin-bottom: 20px; flex-grow: 1; }
-.card-btn { background: var(--text); color: var(--bg); border: none; text-align: center; padding: 10px; border-radius: 6px; font-weight: 600; font-size: 13px; cursor: pointer; }
-.card-btn:hover { opacity: 0.9; }
+
+.card-btn {
+    background: var(--text);
+    color: var(--bg);
+    border: none;
+    text-align: center;
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.card-btn:hover {
+    opacity: 0.85;
+    transform: translateY(-1px);
+}
+.card-btn:active {
+    transform: scale(0.97);
+}
 
 /* Модалка */
 .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); backdrop-filter: blur(4px); justify-content: center; align-items: center; }
-.modal-content { background-color: var(--card-bg); border: 1px solid var(--border); padding: 32px; border-radius: 16px; width: 90%; max-width: 680px; max-height: 85vh; overflow-y: auto; position: relative; }
-.close-btn { position: absolute; top: 16px; right: 20px; color: var(--text-muted); font-size: 28px; cursor: pointer; }
+.modal-content { background-color: var(--card-bg); border: 1px solid var(--border); padding: 32px; border-radius: 16px; width: 90%; max-width: 680px; max-height: 85vh; overflow-y: auto; position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+.close-btn { position: absolute; top: 16px; right: 20px; color: var(--text-muted); font-size: 28px; cursor: pointer; transition: color 0.2s; }
 .close-btn:hover { color: var(--text); }
 .modal-body-content h2 { font-family: 'Cabinet Grotesk', sans-serif; font-size: 24px; margin-bottom: 16px; }
 .modal-body-content h3 { font-size: 16px; margin: 20px 0 8px 0; color: var(--text); border-left: 2px solid var(--text); padding-left: 8px; }
@@ -235,3 +303,20 @@ nav {
 .profit-box a { color: #2f80ed; font-weight: 700; text-decoration: underline; }
 
 footer { background: var(--card-bg); border-top: 1px solid var(--border); padding: 20px 0; color: var(--text-muted); font-size: 13px; margin-top: auto; }
+
+/* АДАПТИВНОСТЬ ПОД МОБИЛЬНЫЕ ТЕЛЕФОНЫ */
+@media (max-width: 600px) {
+    .calc-result {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+    .result-item {
+        justify-content: center;
+        flex-direction: column;
+        gap: 4px;
+    }
+    .hero h1 {
+        font-size: 28px;
+    }
+}
