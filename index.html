@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wazzup Game | Гайды и решения для геймеров</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Шапка сайта -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">Wazzup<span>Game</span></div>
+            <nav>
+                <div class="nav-links">
+                    <button class="nav-btn active" data-platform="all">Все</button>
+                    <button class="nav-btn" data-platform="steam">Steam</button>
+                    <button class="nav-btn" data-platform="playstation">PlayStation</button>
+                    <button class="nav-btn" data-platform="xbox">Xbox</button>
+                    <button class="nav-btn" data-platform="favorites" id="fav-filter-btn">★ Избранное</button>
+                </div>
+                <!-- Переключатель темы -->
+                <button id="theme-toggle" class="theme-toggle-btn" aria-label="Смена темы">
+                    <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="12.78" x2="5.64" y2="11.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                    <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Герой блок -->
+        <section class="hero">
+            <h1>Инструкции, которые экономят ваши деньги</h1>
+            <p>Проверенные способы обхода ограничений, пополнения кошельков и активации подписок в СНГ.</p>
+        </section>
+
+        <!-- НОВЫЙ БЛОК: Интерактивный калькулятор -->
+        <section class="calculator-section">
+            <div class="calc-card">
+                <h3>Калькулятор пополнения Steam</h3>
+                <div class="calc-grid">
+                    <div class="input-group">
+                        <label for="calc-amount">Хочу получить на баланс (₽):</label>
+                        <input type="number" id="calc-amount" value="1000" min="100" max="20000">
+                    </div>
+                    <div class="input-group">
+                        <label for="calc-method">Способ оплаты:</label>
+                        <select id="calc-method">
+                            <option value="donatov">Donatov.net (Автоматически, ~5-8%)</option>
+                            <option value="webmoney">WebMoney WMZ (Выгодно, но сложно, ~2-4%)</option>
+                            <option value="qiwi-kz">Казахстанский Qiwi/Посредники (Высокая комиссия, ~15-20%)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="calc-result">
+                    <div class="result-item">
+                        <span>К оплате с карты:</span>
+                        <strong id="total-to-pay">1070 ₽</strong>
+                    </div>
+                    <div class="result-item text-muted-calc">
+                        <span>Примерная комиссия:</span>
+                        <span id="total-commission">70 ₽</span>
+                    </div>
+                    <a href="https://donatov.net/inv/3446760" target="_blank" id="calc-action-btn" class="calc-btn">Пополнить баланс</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Сетка с гайдами -->
+        <section class="articles-grid" id="guides-container">
+            <!-- Сюда JS вставит карточки -->
+        </section>
+    </main>
+
+    <!-- Модалка -->
+    <div id="guide-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Wazzup Game. База знаний для современного геймера.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

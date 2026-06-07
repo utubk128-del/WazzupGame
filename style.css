@@ -1,0 +1,237 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+/* Переменные для ТЁМНОЙ темы */
+[data-theme="dark"] {
+    --bg: #0f1013;
+    --header-bg: rgba(15, 16, 19, 0.85);
+    --card-bg: #16181d;
+    --border: #23262f;
+    --text: #f4f5f6;
+    --text-muted: #9aa0b1;
+    --accent: #2f80ed;
+    --profit-bg: #1c2331;
+    --profit-border: #2f80ed;
+    --calc-bg: #1a1d24;
+    --sun-display: block;
+    --moon-display: none;
+}
+
+/* Переменные для СВЕТЛОЙ темы */
+[data-theme="light"] {
+    --bg: #f8f9fa;
+    --header-bg: rgba(248, 249, 250, 0.85);
+    --card-bg: #ffffff;
+    --border: #e6e8ec;
+    --text: #141416;
+    --text-muted: #6e768e;
+    --accent: #111111;
+    --profit-bg: #f4f7fe;
+    --profit-border: #2f80ed;
+    --calc-bg: #f0f2f5;
+    --sun-display: none;
+    --moon-display: block;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    width: 90%;
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+/* Шапка */
+header {
+    background-color: var(--header-bg);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 16px 0;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: 'Cabinet Grotesk', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.logo span {
+    color: var(--text-muted);
+    font-weight: 400;
+    margin-left: 2px;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 6px;
+    background: var(--border);
+    padding: 4px;
+    border-radius: 8px;
+}
+
+.nav-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    padding: 6px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 13px;
+    transition: all 0.15s ease;
+}
+
+.nav-btn:hover { color: var(--text); }
+.nav-btn.active {
+    background: var(--card-bg);
+    color: var(--text);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* Кнопка темы */
+.theme-toggle-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.theme-toggle-btn:hover { background: var(--border); }
+.theme-toggle-btn svg { width: 18px; height: 18px; }
+.sun-icon { display: var(--sun-display); }
+.moon-icon { display: var(--moon-display); }
+
+/* Герой блок */
+.hero { padding: 40px 0 20px 0; max-width: 700px; }
+.hero h1 { font-family: 'Cabinet Grotesk', sans-serif; font-size: 36px; line-height: 1.15; margin-bottom: 12px; font-weight: 800; }
+.hero p { color: var(--text-muted); font-size: 15px; line-height: 1.5; }
+
+/* СТИЛИ КАЛЬКУЛЯТОРА */
+.calculator-section { margin-bottom: 40px; }
+.calc-card {
+    background: var(--calc-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+}
+.calc-card h3 { font-size: 18px; margin-bottom: 16px; font-weight: 700; }
+.calc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-bottom: 20px; }
+.input-group { display: flex; flex-direction: column; gap: 8px; }
+.input-group label { font-size: 12px; font-weight: 600; color: var(--text-muted); }
+.input-group input, .input-group select {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+}
+.calc-result {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--card-bg);
+    padding: 16px 20px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    flex-wrap: wrap;
+    gap: 16px;
+}
+.result-item { font-size: 15px; display: flex; align-items: center; gap: 8px; }
+.result-item strong { font-size: 20px; color: var(--text); }
+.text-muted-calc { color: var(--text-muted); font-size: 13.5px; }
+.calc-btn {
+    background: #2f80ed;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+}
+.calc-btn:hover { opacity: 0.9; }
+
+/* Сетка карточек */
+.articles-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; padding-bottom: 60px; }
+.card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; position: relative; }
+.card:hover { border-color: var(--text-muted); }
+.card-img { width: 100%; height: 190px; object-fit: cover; border-bottom: 1px solid var(--border); }
+.card-content { padding: 20px; display: flex; flex-direction: column; flex-grow: 1; }
+
+/* Кнопка Избранного на карточке */
+.fav-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    border: none;
+    color: #fff;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: transform 0.1s ease;
+    z-index: 5;
+}
+.fav-btn:hover { transform: scale(1.1); }
+.fav-btn.active { color: #f2c94c; background: rgba(0, 0, 0, 0.8); }
+
+.badge { align-self: flex-start; font-size: 11px; font-weight: 700; padding: 4px 8px; border-radius: 4px; margin-bottom: 12px; letter-spacing: 0.5px; text-transform: uppercase; background: var(--border); color: var(--text); }
+.card h3 { font-size: 18px; font-weight: 700; line-height: 1.35; margin-bottom: 8px; color: var(--text); }
+.card p { color: var(--text-muted); font-size: 13.5px; line-height: 1.5; margin-bottom: 20px; flex-grow: 1; }
+.card-btn { background: var(--text); color: var(--bg); border: none; text-align: center; padding: 10px; border-radius: 6px; font-weight: 600; font-size: 13px; cursor: pointer; }
+.card-btn:hover { opacity: 0.9; }
+
+/* Модалка */
+.modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); backdrop-filter: blur(4px); justify-content: center; align-items: center; }
+.modal-content { background-color: var(--card-bg); border: 1px solid var(--border); padding: 32px; border-radius: 16px; width: 90%; max-width: 680px; max-height: 85vh; overflow-y: auto; position: relative; }
+.close-btn { position: absolute; top: 16px; right: 20px; color: var(--text-muted); font-size: 28px; cursor: pointer; }
+.close-btn:hover { color: var(--text); }
+.modal-body-content h2 { font-family: 'Cabinet Grotesk', sans-serif; font-size: 24px; margin-bottom: 16px; }
+.modal-body-content h3 { font-size: 16px; margin: 20px 0 8px 0; color: var(--text); border-left: 2px solid var(--text); padding-left: 8px; }
+.modal-body-content p, .modal-body-content li { color: var(--text-muted); font-size: 14.5px; line-height: 1.6; }
+.modal-body-content ul { margin-left: 20px; margin-top: 8px; }
+.profit-box { background: var(--profit-bg); border-left: 3px solid var(--profit-border); padding: 16px; border-radius: 6px; margin: 20px 0; }
+.profit-box a { color: #2f80ed; font-weight: 700; text-decoration: underline; }
+
+footer { background: var(--card-bg); border-top: 1px solid var(--border); padding: 20px 0; color: var(--text-muted); font-size: 13px; margin-top: auto; }
